@@ -40,8 +40,8 @@ func tothe(power int) int {
 // 9 to the number of possible results that can be generated, so 4 digits will
 // yield roughly 7420491000 different possibilities.
 func GenerateNumber(d int) string {
-	if d < 0 {
-		panic(fmt.Sprintf("random_project_generator: invalid negative length %d", d))
+	if d <= 0 {
+		panic(fmt.Sprintf("random_project_generator: invalid non positive length %d", d))
 	}
 	maxval := tothe(d) - 1
 	minval := tothe(d - 1)

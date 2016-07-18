@@ -37,6 +37,16 @@ func TestGenerateNumber(t *testing.T) {
 	}
 }
 
+func TestGenerateNumberWithZeroDigita(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("specifying zero digits should throw")
+		}
+	}()
+
+	GenerateNumber(0)
+}
+
 func TestToThe(t *testing.T) {
 	t.Parallel()
 	if tothe(1) != 10 {
