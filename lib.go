@@ -44,5 +44,5 @@ func GenerateNumber(d int) string {
 	}
 	maxval := tothe(d) - 1
 	minval := tothe(d - 1)
-	return Generate() + "-" + strconv.Itoa(rand.Intn(maxval-minval)+minval)
+	return Generate() + "-" + strconv.Itoa(r.Intn(maxval-minval)+minval)
 }
