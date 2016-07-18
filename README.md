@@ -19,7 +19,9 @@ import "github.com/kevinburke/go-random-project-generator"
 
 func main() {
     name := random_project_generator.Generate()
-    fmt.Println(name)
+    fmt.Println(name) // "tidy-boat"
+    name = random_project_generator.GenerateNumber(4)
+    fmt.Println(name) // "viable-action-2183"
 }
 ```
 
