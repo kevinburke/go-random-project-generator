@@ -15,7 +15,12 @@ over a million possible combinations.
 Usage:
 
 ```go
-import "github.com/kevinburke/go-random-project-generator"
+package main
+
+import (
+    "github.com/kevinburke/go-random-project-generator"
+    "fmt"
+)
 
 func main() {
     name := random_project_generator.Generate()
