@@ -7,6 +7,7 @@ import (
 )
 
 func TestDifferentResults(t *testing.T) {
+	t.Parallel()
 	word1 := Generate()
 	word2 := Generate()
 	if word1 == word2 {
@@ -15,6 +16,7 @@ func TestDifferentResults(t *testing.T) {
 }
 
 func TestReturnedValue(t *testing.T) {
+	t.Parallel()
 	if len(Generate()) == 0 {
 		t.Errorf("Generate() returned an empty string")
 	}
@@ -26,6 +28,7 @@ func TestReturnedValue(t *testing.T) {
 var validRandomNumber = regexp.MustCompile(`^[a-z]+-[a-z]+-[0-9]{4}$`)
 
 func TestGenerateNumber(t *testing.T) {
+	t.Parallel()
 	for i := 0; i < 10000; i++ {
 		word := GenerateNumber(4)
 		if !validRandomNumber.MatchString(word) {
@@ -35,6 +38,7 @@ func TestGenerateNumber(t *testing.T) {
 }
 
 func TestToThe(t *testing.T) {
+	t.Parallel()
 	if tothe(1) != 10 {
 		t.Errorf("tothe(1) should equal 10, got %d", tothe(1))
 	}
@@ -46,8 +50,32 @@ func TestToThe(t *testing.T) {
 	}
 }
 
+var validTests = []struct {
+	in       string
+	expected bool
+}{
+	{"foo-bar-3", false},
+	{"", false},
+	{"foo-bar", false},
+	{"aback-yam", true},
+	{"absent-zoo-23", true},
+	{"absent-zoo-yam", false},
+	{"absent-zoo--23", false},
+	{"absent-zoo-0", false},
+}
+
+func TestValid(t *testing.T) {
+	t.Parallel()
+	for _, tt := range validTests {
+		if Valid(tt.in) != tt.expected {
+			t.Errorf("Valid(\"%s\"): got %t, expected %t", tt.in, !tt.expected, tt.expected)
+		}
+	}
+}
+
 var benchWord string
 var benchWordNumber string
+var benchValid bool
 
 func BenchmarkGenerate(b *testing.B) {
 	for i := 0; i < b.N; i++ {
@@ -58,6 +86,12 @@ func BenchmarkGenerate(b *testing.B) {
 func BenchmarkGenerateNumber(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		benchWordNumber = GenerateNumber(5)
+	}
+}
+
+func BenchmarkValid(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		benchValid = Valid("zonked-zoo-12334343")
 	}
 }
 
