@@ -1,6 +1,6 @@
 package random_project_generator
 
-// Array of adjectives, in alphabetical order, between 5 and 10 letters long.
+// Array of adjectives, in alphabetical order, between 3 and 10 letters long.
 var Adjectives = []string{
 	"aback",
 	"abaft",
@@ -1244,7 +1244,7 @@ var Adjectives = []string{
 	"zonked",
 }
 
-// Array of nouns, in alphabetical order, between 5 and 10 letters long.
+// Array of nouns, in alphabetical order, between 3 and 10 letters long.
 var Nouns = []string{
 	"account",
 	"achiever",
